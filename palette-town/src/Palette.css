@@ -5,3 +5,9 @@
 .Palette-colors {
   height: 90%;
 }
+
+.Palette-slider {
+  width: 340px;
+  margin: 0 10px;
+  display: inline-block;
+}
