@@ -17,7 +17,9 @@ class Navbar extends Component {
   }
 
   changeFormat(evt) {
-    this.setState({ format: evt.target.value, open: true });
+    this.setState({ format: evt.target.value }, () => {
+      setTimeout(() => this.setState({ open: true }), 1500);
+    });
     this.props.changeFormat(evt.target.value);
   }
 

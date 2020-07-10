@@ -9,7 +9,6 @@ class ColorBox extends Component {
     this.changeCopyState = this.changeCopyState.bind(this);
   }
 
-  /* Changes isCopied to true and flips back to false after 1500ms */
   changeCopyState() {
     this.setState({ isCopied: true }, () => {
       setTimeout(() => this.setState({ isCopied: false }), 1500);
