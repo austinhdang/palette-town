@@ -40,9 +40,17 @@
 .copy-button {
   opacity: 0;
 }
+
+.copy-button:hover {
+  opacity: 1;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
 .ColorBox:hover .copy-button {
   opacity: 1;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .ColorBox-content {
@@ -55,6 +63,14 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 12px;
+}
+
+.light-text {
+  color: white;
+}
+
+.ColorBox .dark-text {
+  color: black;
 }
 
 .see-more {
