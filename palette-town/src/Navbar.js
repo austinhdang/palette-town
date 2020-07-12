@@ -52,7 +52,7 @@ class Navbar extends Component {
                   borderColor: '#1ba619',
                   height: 13,
                   width: 13,
-                  marginLeft: -7,
+                  marginLeft: 0,
                   marginTop: -3,
                   backgroundColor: '#1ba619',
                   boxShadow: 'none',
