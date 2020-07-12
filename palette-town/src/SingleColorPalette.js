@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
@@ -29,20 +30,27 @@ class SingleColorPalette extends Component {
   }
 
   render() {
-    const { paletteName, emoji } = this.props.palette;
+    const { paletteName, emoji, id } = this.props.palette;
     const { format, isDiffFormat } = this.state;
     const colorBoxes = this._shades.map((color) => (
       <ColorBox
-        key={color.id}
+        key={color.name}
         name={color.name}
         background={color[format]}
         showLink={false}
       />
     ));
     return (
-      <div className='Palette'>
+      <div className='SingleColorPalette Palette'>
         <Navbar changeFormat={this.changeFormat} isAllColors={false} />
-        <div className='Palette-colors'>{colorBoxes}</div>
+        <div className='Palette-colors'>
+          {colorBoxes}
+          <div className='back ColorBox'>
+            <Link to={`/palette/${id}`} className='back-button'>
+              BACK
+            </Link>
+          </div>
+        </div>
         <div
           style={{ background: '#1ba619' }}
           className={`format-overlay ${isDiffFormat && 'show'}`}
