@@ -4,6 +4,7 @@ export default {
     alignItems: 'center',
     justifyContent: 'flex-start',
     height: '6vh',
+    fontWeight: '500',
   },
   logo: {
     display: 'flex',
@@ -11,9 +12,10 @@ export default {
     marginRight: '15px',
     padding: '0 13px',
     height: '100%',
-    fontSize: '22px',
-    backgroundColor: '#eceff1',
     fontFamily: 'Roboto',
+    fontSize: '22px',
+    fontWeight: '400',
+    backgroundColor: '#eceff1',
     '& a': {
       textDecoration: 'none',
       color: 'black',
