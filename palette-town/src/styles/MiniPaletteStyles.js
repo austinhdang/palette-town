@@ -4,6 +4,7 @@ export default {
     border: '1px solid black',
     borderRadius: '5px',
     padding: '0.5rem',
+    paddingBottom: '0.3rem',
     position: 'relative',
     overflow: 'hidden',
     '&:hover': {
@@ -23,8 +24,10 @@ export default {
     alignItems: 'center',
     margin: '0',
     color: 'black',
-    paddingTop: '0.5rem',
-    fontSize: '1rem',
+    paddingTop: '0.3rem',
+    fontSize: '0.9rem',
+    fontWeight: '600',
+    letterSpacing: '1px',
     position: 'relative',
   },
   emoji: {

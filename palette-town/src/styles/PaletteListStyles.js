@@ -36,6 +36,6 @@ export default {
     width: '100%',
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 30%)',
-    gridGap: '6%',
+    gridGap: '6.5% 5%',
   },
 };
