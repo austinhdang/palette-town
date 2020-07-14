@@ -20,6 +20,7 @@ import AddIcon from '@material-ui/icons/Add';
 import DraggableColorBox from './DraggableColorBox';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import chroma from 'chroma-js';
 import { ChromePicker } from 'react-color';
 
 const drawerWidth = 400;
@@ -243,7 +244,13 @@ function NewPaletteForm(props) {
               variant='contained'
               color='primary'
               type='submit'
-              style={{ backgroundColor: currColor }}
+              style={{
+                backgroundColor: currColor,
+                color:
+                  chroma.contrast(currColor, 'white') < 4.5
+                    ? 'rgba(0, 0, 0, 0.8)'
+                    : 'white',
+              }}
               startIcon={<AddIcon />}
             >
               Add Color
