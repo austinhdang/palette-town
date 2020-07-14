@@ -96,15 +96,15 @@ const useStyles = makeStyles((theme) => ({
 
 function NewPaletteForm(props) {
   const classes = useStyles();
+  const { maxColors = 20 } = props; // defaultProps
   const [ open, setOpen ] = React.useState(false);
-  const [ currColor, setColor ] = React.useState('teal');
-  const [ colors, setColors ] = React.useState([
-    { color: '#1ba619', name: 'Green' },
-  ]);
+  const [ currColor, setColor ] = React.useState('#1BDE18');
+  const [ colors, setColors ] = React.useState(props.palettes[0].colors);
   const [ newName, setNewName ] = React.useState({
     colorName: '',
     paletteName: '',
   });
+  const paletteIsFull = colors.length >= maxColors;
 
   React.useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
@@ -143,6 +143,24 @@ function NewPaletteForm(props) {
     setNewName({ ...newName, colorName: '' });
   };
 
+  const removeColor = (colorName) => {
+    const updatedColors = colors.filter((color) => color.name !== colorName);
+    setColors(updatedColors);
+  };
+
+  /* Picks a random color from existing palettes and adds it to new palette */
+  const addRandomColor = () => {
+    const allColors = props.palettes.map((p) => p.colors).flat();
+    const filteredColors = allColors.filter((c) => !colors.includes(c));
+    let rand = Math.floor(Math.random() * filteredColors.length);
+    const randomColor = filteredColors[rand];
+    setColors([ ...colors, randomColor ]);
+  };
+
+  const clearColors = () => {
+    setColors([]);
+  };
+
   const handleChange = (evt) => {
     setNewName({ ...newName, [evt.target.name]: evt.target.value });
   };
@@ -158,11 +176,7 @@ function NewPaletteForm(props) {
     props.history.push('/');
   };
 
-  const removeColor = (colorName) => {
-    const updatedColors = colors.filter((color) => color.name !== colorName);
-    setColors(updatedColors);
-  };
-
+  /* Sorts color boxes when using drag and drop */
   const onSortEnd = ({ oldIndex, newIndex }) => {
     setColors(arrayMove(colors, oldIndex, newIndex));
   };
@@ -250,24 +264,36 @@ function NewPaletteForm(props) {
             />
             <Button
               variant='contained'
-              color='primary'
               type='submit'
-              style={{
-                backgroundColor: currColor,
-                color:
-                  chroma.contrast(currColor, 'white') < 4.5
-                    ? 'rgba(0, 0, 0, 0.8)'
-                    : 'white',
-              }}
+              disabled={paletteIsFull}
               startIcon={<AddIcon />}
+              style={
+                paletteIsFull ? (
+                  {
+                    backgroundColor: 'rgba(0, 0, 0, 0.12)',
+                    color: 'rgba(0, 0, 0, 0.26)',
+                    boxShadow: 'none',
+                  }
+                ) : (
+                  {
+                    backgroundColor: currColor,
+                    color:
+                      chroma.contrast(currColor, 'white') < 4.5
+                        ? 'rgba(0, 0, 0, 0.8)'
+                        : 'white',
+                  }
+                )
+              }
             >
-              Add Color
+              {paletteIsFull ? 'Palette Full' : 'Add Color'}
             </Button>
           </ValidatorForm>
           <div>
             <Button
               variant='contained'
               color='primary'
+              disabled={paletteIsFull}
+              onClick={addRandomColor}
               startIcon={<ShuffleIcon />}
             >
               Random Color
@@ -275,6 +301,7 @@ function NewPaletteForm(props) {
             <Button
               variant='contained'
               color='secondary'
+              onClick={clearColors}
               startIcon={<ClearIcon />}
             >
               Clear Palette
