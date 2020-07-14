@@ -29,6 +29,9 @@ export default {
       letterSpacing: '1px',
       textDecoration: 'none',
       textTransform: 'none',
+      '& .MuiSvgIcon-root': {
+        marginBottom: '-5px',
+      },
     },
   },
   palettes: {

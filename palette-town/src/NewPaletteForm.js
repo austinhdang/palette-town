@@ -11,8 +11,12 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import DeleteIcon from '@material-ui/icons/Delete';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SaveIcon from '@material-ui/icons/Save';
+import DoneIcon from '@material-ui/icons/Done';
+import ShuffleIcon from '@material-ui/icons/Shuffle';
+import ClearIcon from '@material-ui/icons/Clear';
+import AddIcon from '@material-ui/icons/Add';
 import DraggableColorBox from './DraggableColorBox';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -94,7 +98,9 @@ function NewPaletteForm(props) {
   const classes = useStyles();
   const [ open, setOpen ] = React.useState(false);
   const [ currColor, setColor ] = React.useState('teal');
-  const [ colors, setColors ] = React.useState([]);
+  const [ colors, setColors ] = React.useState([
+    { color: '#1ba619', name: 'Green' },
+  ]);
   const [ newName, setNewName ] = React.useState({
     colorName: '',
     paletteName: '',
@@ -192,7 +198,7 @@ function NewPaletteForm(props) {
                 variant='contained'
                 color='primary'
                 className={classes.button}
-                startIcon={<SaveIcon />}
+                startIcon={<DoneIcon />}
                 type='submit'
               >
                 Save Palette
@@ -211,19 +217,11 @@ function NewPaletteForm(props) {
         >
           <div className={classes.drawerHeader}>
             <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon />
+              <ExitToAppIcon style={{ color: 'black' }} />
             </IconButton>
           </div>
           <Divider />
           <Typography variant='h4'>Design Your Palette</Typography>
-          <div>
-            <Button variant='contained' color='primary'>
-              Random Color
-            </Button>
-            <Button variant='contained' color='secondary'>
-              Clear Palette
-            </Button>
-          </div>
           <ChromePicker
             color={currColor}
             onChangeComplete={updateCurrentColor}
@@ -246,10 +244,27 @@ function NewPaletteForm(props) {
               color='primary'
               type='submit'
               style={{ backgroundColor: currColor }}
+              startIcon={<AddIcon />}
             >
               Add Color
             </Button>
           </ValidatorForm>
+          <div>
+            <Button
+              variant='contained'
+              color='primary'
+              startIcon={<ShuffleIcon />}
+            >
+              Random Color
+            </Button>
+            <Button
+              variant='contained'
+              color='secondary'
+              startIcon={<ClearIcon />}
+            >
+              Clear Palette
+            </Button>
+          </div>
         </Drawer>
         <main
           className={clsx(classes.content, {
