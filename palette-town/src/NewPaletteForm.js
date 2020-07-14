@@ -15,11 +15,12 @@ import DoneIcon from '@material-ui/icons/Done';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import ClearIcon from '@material-ui/icons/Clear';
 import AddIcon from '@material-ui/icons/Add';
-import DraggableColorBox from './DraggableColorBox';
+import DraggableColorList from './DraggableColorList';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import chroma from 'chroma-js';
 import { ChromePicker } from 'react-color';
+import arrayMove from 'array-move';
 
 const drawerWidth = 400;
 
@@ -162,6 +163,10 @@ function NewPaletteForm(props) {
     setColors(updatedColors);
   };
 
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors(arrayMove(colors, oldIndex, newIndex));
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
@@ -282,14 +287,13 @@ function NewPaletteForm(props) {
           })}
         >
           <div className={classes.drawerHeader} />
-          {colors.map((color) => (
-            <DraggableColorBox
-              color={color.color}
-              name={color.name}
-              key={color.name}
-              handleClick={() => removeColor(color.name)}
-            />
-          ))}
+          <DraggableColorList
+            colors={colors}
+            removeColor={removeColor}
+            axis='xy'
+            onSortEnd={onSortEnd}
+            distance={1}
+          />
         </main>
       </div>
     </ThemeProvider>
