@@ -9,6 +9,7 @@ export default {
     position: 'relative',
     cursor: 'pointer',
     marginBottom: '-3.5px',
+    fontFamily: 'Roboto',
     '&:hover button': {
       opacity: '1',
       transition: 'all 0.3s ease-in',
