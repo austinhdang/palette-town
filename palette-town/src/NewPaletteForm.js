@@ -10,9 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import SaveIcon from '@material-ui/icons/Save';
 import DoneIcon from '@material-ui/icons/Done';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -159,6 +157,11 @@ function NewPaletteForm(props) {
     props.history.push('/');
   };
 
+  const removeColor = (colorName) => {
+    const updatedColors = colors.filter((color) => color.name !== colorName);
+    setColors(updatedColors);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
@@ -280,7 +283,12 @@ function NewPaletteForm(props) {
         >
           <div className={classes.drawerHeader} />
           {colors.map((color) => (
-            <DraggableColorBox color={color.color} name={color.name} />
+            <DraggableColorBox
+              color={color.color}
+              name={color.name}
+              key={color.name}
+              handleClick={() => removeColor(color.name)}
+            />
           ))}
         </main>
       </div>

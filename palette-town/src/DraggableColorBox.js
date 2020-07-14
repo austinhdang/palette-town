@@ -42,7 +42,7 @@ const styles = {
 };
 
 function DraggableColorBox(props) {
-  const { classes, color, name } = props;
+  const { classes, color, name, handleClick } = props;
   return (
     <div
       className={classes.DraggableColorBox}
@@ -50,7 +50,7 @@ function DraggableColorBox(props) {
     >
       <div className={classes.boxContent}>
         <span>{name}</span>
-        <DeleteIcon />
+        <DeleteIcon onClick={handleClick} />
       </div>
     </div>
   );
