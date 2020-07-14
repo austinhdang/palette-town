@@ -4,6 +4,7 @@ export default {
     alignItems: 'center',
     justifyContent: 'flex-start',
     height: '6vh',
+    fontFamily: 'Roboto',
     fontWeight: '500',
   },
   logo: {
@@ -12,7 +13,6 @@ export default {
     marginRight: '15px',
     padding: '0 13px',
     height: '100%',
-    fontFamily: 'Roboto',
     fontSize: '22px',
     fontWeight: '400',
     backgroundColor: '#eceff1',
