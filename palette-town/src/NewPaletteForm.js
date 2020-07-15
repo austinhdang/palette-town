@@ -22,7 +22,7 @@ import chroma from 'chroma-js';
 import { ChromePicker } from 'react-color';
 import arrayMove from 'array-move';
 
-const drawerWidth = 400;
+const drawerWidth = 350;
 
 const theme = createMuiTheme({
   overrides: {
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
   content: {
     flexGrow: 1,
@@ -202,8 +202,8 @@ function NewPaletteForm(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant='h6' noWrap>
-              Create New Palette
+            <Typography variant='h5' className={open && classes.hide}>
+              Palette Town
             </Typography>
             <ValidatorForm onSubmit={handleSubmit}>
               <TextValidator
@@ -239,6 +239,9 @@ function NewPaletteForm(props) {
           }}
         >
           <div className={classes.drawerHeader}>
+            <Typography variant='h5' noWrap>
+              Palette Town
+            </Typography>
             <IconButton onClick={handleDrawerClose}>
               <ExitToAppIcon style={{ color: 'black' }} />
             </IconButton>
