@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useInputState from './hooks/useInputState';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,10 +14,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 function PaletteFormNav(props) {
   const { classes, open, palettes, handleDrawerOpen, handleSubmit } = props;
-  const [ newName, setNewName ] = React.useState({
-    colorName: '',
-    paletteName: '',
-  });
+  const [ newPaletteName, setNewPaletteName ] = useInputState('');
 
   React.useEffect(() => {
     ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
@@ -25,10 +23,6 @@ function PaletteFormNav(props) {
       );
     });
   });
-
-  const handleChange = (evt) => {
-    setNewName({ ...newName, [evt.target.name]: evt.target.value });
-  };
 
   return (
     <div>
@@ -50,15 +44,15 @@ function PaletteFormNav(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h5' className={open && classes.hide}>
-            Palette Town
+          <Typography variant='h6' className={open && classes.hide}>
+            Create New Palette
           </Typography>
-          <ValidatorForm onSubmit={() => handleSubmit(newName.paletteName)}>
+          <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
             <TextValidator
               label='Palette Name'
-              value={newName.paletteName}
+              value={newPaletteName}
               name='paletteName'
-              onChange={handleChange}
+              onChange={setNewPaletteName}
               validators={[ 'required', 'isPaletteNameUnique' ]}
               errorMessages={[
                 'Enter a palette name',

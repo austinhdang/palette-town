@@ -1,4 +1,7 @@
 import React from 'react';
+import DraggableColorList from './DraggableColorList';
+import PaletteFormNav from './PaletteFormNav';
+import ColorPickerForm from './ColorPickerForm';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -9,13 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import ClearIcon from '@material-ui/icons/Clear';
-import AddIcon from '@material-ui/icons/Add';
-import DraggableColorList from './DraggableColorList';
-import PaletteFormNav from './PaletteFormNav';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import chroma from 'chroma-js';
-import { ChromePicker } from 'react-color';
 import arrayMove from 'array-move';
 
 const drawerWidth = 350;
@@ -94,24 +91,8 @@ function NewPaletteForm(props) {
   const classes = useStyles();
   const { maxColors = 20, palettes } = props;
   const [ open, setOpen ] = React.useState(false);
-  const [ currColor, setColor ] = React.useState('#1BDE18');
-  const [ colors, setColors ] = React.useState(props.palettes[0].colors);
-  const [ newName, setNewName ] = React.useState({
-    colorName: '',
-    paletteName: '',
-  });
+  const [ colors, setColors ] = React.useState(palettes[0].colors);
   const paletteIsFull = colors.length >= maxColors;
-
-  React.useEffect(() => {
-    ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
-      return colors.every(
-        ({ name }) => name.toLowerCase() !== value.toLowerCase()
-      );
-    });
-    ValidatorForm.addValidationRule('isColorUnique', () => {
-      return colors.every(({ color }) => color !== currColor);
-    });
-  });
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -121,17 +102,8 @@ function NewPaletteForm(props) {
     setOpen(false);
   };
 
-  const updateCurrentColor = (newColor) => {
-    setColor(newColor.hex);
-  };
-
-  const addNewColor = () => {
-    const newColor = {
-      color: currColor,
-      name: newName.colorName,
-    };
+  const addNewColor = (newColor) => {
     setColors([ ...colors, newColor ]);
-    setNewName({ ...newName, colorName: '' });
   };
 
   const removeColor = (colorName) => {
@@ -141,7 +113,7 @@ function NewPaletteForm(props) {
 
   /* Picks a random color from existing palettes and adds it to new palette */
   const addRandomColor = () => {
-    const allColors = props.palettes.map((p) => p.colors).flat();
+    const allColors = palettes.map((p) => p.colors).flat();
     const filteredColors = allColors.filter((c) => !colors.includes(c));
     let rand = Math.floor(Math.random() * filteredColors.length);
     const randomColor = filteredColors[rand];
@@ -150,10 +122,6 @@ function NewPaletteForm(props) {
 
   const clearColors = () => {
     setColors([]);
-  };
-
-  const handleChange = (evt) => {
-    setNewName({ ...newName, [evt.target.name]: evt.target.value });
   };
 
   const handleSubmit = (newPaletteName) => {
@@ -200,49 +168,11 @@ function NewPaletteForm(props) {
           </div>
           <Divider />
           <Typography variant='h4'>Design Your Palette</Typography>
-          <ChromePicker
-            color={currColor}
-            onChangeComplete={updateCurrentColor}
+          <ColorPickerForm
+            colors={colors}
+            paletteIsFull={paletteIsFull}
+            addNewColor={addNewColor}
           />
-          <ValidatorForm onSubmit={addNewColor}>
-            <TextValidator
-              label='Color Name'
-              value={newName.colorName}
-              name='colorName'
-              onChange={handleChange}
-              validators={[ 'required', 'isColorNameUnique', 'isColorUnique' ]}
-              errorMessages={[
-                'Enter a color name',
-                'Color name already used',
-                'Color already used',
-              ]}
-            />
-            <Button
-              variant='contained'
-              type='submit'
-              disabled={paletteIsFull}
-              startIcon={<AddIcon />}
-              style={
-                paletteIsFull ? (
-                  {
-                    backgroundColor: 'rgba(0, 0, 0, 0.12)',
-                    color: 'rgba(0, 0, 0, 0.26)',
-                    boxShadow: 'none',
-                  }
-                ) : (
-                  {
-                    backgroundColor: currColor,
-                    color:
-                      chroma.contrast(currColor, 'white') < 4.5
-                        ? 'rgba(0, 0, 0, 0.8)'
-                        : 'white',
-                  }
-                )
-              }
-            >
-              {paletteIsFull ? 'Palette Full' : 'Add Color'}
-            </Button>
-          </ValidatorForm>
           <div>
             <Button
               variant='contained'
