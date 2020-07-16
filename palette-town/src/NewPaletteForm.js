@@ -91,11 +91,17 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '0.5rem',
     padding: '6px 25px 6px 20px',
     backgroundColor: '#1ca9ef',
+    '&:hover': {
+      backgroundColor: '#239BD7',
+    },
   },
   clearPalette: {
     marginLeft: '0.5rem',
     padding: '6px 22px 6px 20px',
     backgroundColor: '#EB030B',
+    '&:hover': {
+      backgroundColor: '#D0080F',
+    },
   },
 }));
 
@@ -190,7 +196,6 @@ function NewPaletteForm(props) {
             <div className={classes.paletteButtons}>
               <Button
                 variant='contained'
-                color='primary'
                 onClick={generateRandomPalette}
                 startIcon={<ShuffleIcon />}
                 className={classes.randomPalette}
@@ -199,7 +204,6 @@ function NewPaletteForm(props) {
               </Button>
               <Button
                 variant='contained'
-                color='secondary'
                 onClick={clearColors}
                 startIcon={<ClearIcon />}
                 className={classes.clearPalette}

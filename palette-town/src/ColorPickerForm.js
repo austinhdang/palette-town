@@ -1,5 +1,6 @@
 import React from 'react';
 import useInputState from './hooks/useInputState';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
@@ -28,6 +29,9 @@ const useStyles = makeStyles({
     marginRight: '0.5rem',
     padding: '6px 25px 6px 20px',
     backgroundColor: '#1ca9ef',
+    '&:hover': {
+      backgroundColor: '#239BD7',
+    },
   },
   addColor: {
     marginLeft: '0.5rem',
@@ -35,6 +39,12 @@ const useStyles = makeStyles({
     '& .MuiButton-startIcon': {
       marginRight: '0.375rem',
     },
+  },
+  disabled: {
+    padding: '6px 25px 6px 20px',
+    backgroundColor: 'rgba(0, 0, 0, 0.12)',
+    color: 'rgba(0, 0, 0, 0.26)',
+    boxShadow: 'none',
   },
   colorNameInput: {
     width: '100%',
@@ -109,20 +119,25 @@ function ColorPickerForm(props) {
         <div className={classes.colorButtons}>
           <Button
             variant='contained'
-            color='primary'
             disabled={paletteIsFull}
             onClick={addRandomColor}
             startIcon={<ShuffleIcon />}
-            className={classes.randomColor}
+            className={clsx(
+              classes.randomColor,
+              paletteIsFull && classes.disabled
+            )}
           >
-            Random Color
+            {paletteIsFull ? 'Palette Full' : 'Random Color'}
           </Button>
           <Button
             variant='contained'
             type='submit'
             disabled={paletteIsFull}
             startIcon={<AddIcon />}
-            className={classes.addColor}
+            className={clsx(
+              classes.addColor,
+              paletteIsFull && classes.disabled
+            )}
             style={
               paletteIsFull ? (
                 {
