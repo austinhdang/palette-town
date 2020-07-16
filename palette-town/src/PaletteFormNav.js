@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import DoneIcon from '@material-ui/icons/Done';
 
 const drawerWidth = 350;
 
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     }),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     height: '64px',
   },
   appBarShift: {
@@ -41,12 +43,28 @@ const useStyles = makeStyles((theme) => ({
   hide: {
     display: 'none',
   },
-  navBtns: {},
+  navBtns: {
+    marginRight: '1rem',
+    '& Button': {
+      margin: '0 0.5rem',
+    },
+  },
+  saveButton: {
+    backgroundColor: '#1FBE1D',
+    '&:hover': {
+      backgroundColor: '#29A728',
+    },
+  },
 }));
 
 function PaletteFormNav(props) {
   const classes = useStyles();
   const { open, palettes, handleDrawerOpen, handleSubmit } = props;
+  const [ formShowing, setFormShowing ] = React.useState(false);
+
+  const showForm = () => {
+    setFormShowing(true);
+  };
 
   return (
     <div className={classes.root}>
@@ -73,22 +91,33 @@ function PaletteFormNav(props) {
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <PaletteMetaForm
-            palettes={palettes}
-            classes={classes}
-            handleSubmit={handleSubmit}
-          />
           <Link to='/'>
             <Button
-              variant='contained'
+              variant='outlined'
               color='secondary'
               startIcon={<ArrowBackIcon />}
+              className={classes.backButton}
             >
               Go Back
             </Button>
           </Link>
+          <Button
+            variant='contained'
+            onClick={showForm}
+            startIcon={<DoneIcon />}
+            className={classes.saveButton}
+          >
+            Save
+          </Button>
         </div>
       </AppBar>
+      {formShowing && (
+        <PaletteMetaForm
+          palettes={palettes}
+          classes={classes}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }
