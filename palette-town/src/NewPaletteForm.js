@@ -78,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
   paletteButtons: {
     display: 'flex',
     flexDirection: 'row',
-    // margin: '0.5rem auto',
     '& Button': {
       width: '50%',
       fontSize: '1rem',
