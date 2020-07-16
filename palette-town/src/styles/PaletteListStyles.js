@@ -2,6 +2,7 @@ export default {
   root: {
     backgroundColor: 'blue',
     height: '100vh',
+    fontFamily: 'Barlow',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',

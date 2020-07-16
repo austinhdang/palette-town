@@ -5,7 +5,7 @@ export default {
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    fontFamily: 'Roboto',
+    fontFamily: 'Barlow',
     fontWeight: '600',
   },
   emoji: {
