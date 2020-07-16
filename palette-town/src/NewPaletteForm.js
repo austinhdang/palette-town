@@ -39,6 +39,8 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    display: 'flex',
+    alignItems: 'center',
   },
   drawerHeader: {
     display: 'flex',
@@ -64,6 +66,37 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
+  },
+  drawerContainer: {
+    width: '90%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  paletteButtons: {
+    display: 'flex',
+    flexDirection: 'row',
+    // margin: '0.5rem auto',
+    '& Button': {
+      width: '50%',
+      fontSize: '1rem',
+      lineHeight: '1.1rem',
+      '& .MuiSvgIcon-root': {
+        fontSize: '1.5rem',
+      },
+    },
+  },
+  randomPalette: {
+    marginRight: '0.5rem',
+    padding: '6px 25px 6px 20px',
+    backgroundColor: '#1ca9ef',
+  },
+  clearPalette: {
+    marginLeft: '0.5rem',
+    padding: '6px 22px 6px 20px',
+    backgroundColor: '#EB030B',
   },
 }));
 
@@ -91,17 +124,22 @@ function NewPaletteForm(props) {
     setColors(updatedColors);
   };
 
-  /* Picks a random color from existing palettes and adds it to new palette */
-  const addRandomColor = () => {
-    const allColors = palettes.map((p) => p.colors).flat();
-    const filteredColors = allColors.filter((c) => !colors.includes(c));
-    let rand = Math.floor(Math.random() * filteredColors.length);
-    const randomColor = filteredColors[rand];
-    setColors([ ...colors, randomColor ]);
-  };
-
   const clearColors = () => {
     setColors([]);
+  };
+
+  /* Generates a new palette with random colors from existing palettes and 
+     replaces current palette */
+  const generateRandomPalette = () => {
+    const updatedColors = [];
+    const allColors = palettes.map((p) => p.colors).flat();
+    for (let i = 0; i < maxColors; i++) {
+      let filteredColors = allColors.filter((c) => !updatedColors.includes(c));
+      let rand = Math.floor(Math.random() * filteredColors.length);
+      const randomColor = filteredColors[rand];
+      updatedColors.push(randomColor);
+    }
+    setColors(updatedColors);
   };
 
   const handleSubmit = (newPaletteName) => {
@@ -146,30 +184,37 @@ function NewPaletteForm(props) {
             </IconButton>
           </div>
           <Divider />
-          <Typography variant='h4'>Design Your Palette</Typography>
-          <ColorPickerForm
-            colors={colors}
-            paletteIsFull={paletteIsFull}
-            addNewColor={addNewColor}
-          />
-          <div>
-            <Button
-              variant='contained'
-              color='primary'
-              disabled={paletteIsFull}
-              onClick={addRandomColor}
-              startIcon={<ShuffleIcon />}
-            >
-              Random Color
-            </Button>
-            <Button
-              variant='contained'
-              color='secondary'
-              onClick={clearColors}
-              startIcon={<ClearIcon />}
-            >
-              Clear Palette
-            </Button>
+          <div className={classes.drawerContainer}>
+            <Typography variant='h4' gutterBottom>
+              Design Your Palette
+            </Typography>
+            <div className={classes.paletteButtons}>
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={generateRandomPalette}
+                startIcon={<ShuffleIcon />}
+                className={classes.randomPalette}
+              >
+                Random Palette
+              </Button>
+              <Button
+                variant='contained'
+                color='secondary'
+                onClick={clearColors}
+                startIcon={<ClearIcon />}
+                className={classes.clearPalette}
+              >
+                Clear Palette
+              </Button>
+            </div>
+            <ColorPickerForm
+              colors={colors}
+              setColors={setColors}
+              palettes={palettes}
+              paletteIsFull={paletteIsFull}
+              addNewColor={addNewColor}
+            />
           </div>
         </Drawer>
         <main
