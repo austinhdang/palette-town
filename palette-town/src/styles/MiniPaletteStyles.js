@@ -8,6 +8,7 @@ export default {
     position: 'relative',
     overflow: 'hidden',
     cursor: 'pointer',
+    boxSizing: 'unset',
     '&:hover svg': {
       opacity: '1',
     },
