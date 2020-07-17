@@ -94,7 +94,7 @@ function PaletteFormNav(props) {
           <Link to='/'>
             <Button
               variant='outlined'
-              color='secondary'
+              color='default'
               startIcon={<ArrowBackIcon />}
               className={classes.backButton}
             >
