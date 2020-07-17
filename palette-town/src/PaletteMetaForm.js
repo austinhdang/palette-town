@@ -12,7 +12,6 @@ import 'emoji-mart/css/emoji-mart.css';
 
 function PaletteMetaForm(props) {
   const { palettes, classes, handleSubmit, hideForm } = props;
-  const [ open, setOpen ] = React.useState(true);
   const [ stage, setStage ] = React.useState('form');
   const [ newPaletteName, setNewPaletteName ] = useInputState('');
 
@@ -23,14 +22,6 @@ function PaletteMetaForm(props) {
       );
     });
   });
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const showEmojiPicker = () => {
     setStage('emoji');
