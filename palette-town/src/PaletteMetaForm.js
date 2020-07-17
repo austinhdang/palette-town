@@ -49,13 +49,12 @@ function PaletteMetaForm(props) {
         aria-labelledby='emoji-dialog-title'
       >
         <DialogTitle id='emoji-dialog-title'>
-          Choose a Palette Emoji
+          <Emoji emoji='artist' size={24} skin={3} /> Choose a Palette Emoji
         </DialogTitle>
         <Picker
           title='Pick a Palette Emoji'
           onSelect={savePalette}
           emoji='art'
-          theme='auto'
         />
       </Dialog>
       <Dialog
@@ -63,7 +62,9 @@ function PaletteMetaForm(props) {
         onClose={hideForm}
         aria-labelledby='form-dialog-title'
       >
-        <DialogTitle id='form-dialog-title'>Choose a Palette Name</DialogTitle>
+        <DialogTitle id='form-dialog-title'>
+          <Emoji emoji='art' size={24} /> Choose a Palette Name
+        </DialogTitle>
         <ValidatorForm onSubmit={showEmojiPicker}>
           <DialogContent>
             <DialogContentText>
