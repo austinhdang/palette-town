@@ -1,4 +1,5 @@
 import chroma from 'chroma-js';
+import sizes from './mediaQueries';
 
 export default {
   ColorBox: {
@@ -14,6 +15,18 @@ export default {
       opacity: '1',
       transition: 'all 0.3s ease-in',
       cursor: 'pointer',
+    },
+    [sizes.down('lg')]: {
+      width: '25%',
+      height: (props) => (props.isFullPalette ? '20%' : '10%'),
+    },
+    [sizes.down('md')]: {
+      width: '50%',
+      height: (props) => (props.isFullPalette ? '10%' : '10%'),
+    },
+    [sizes.down('xs')]: {
+      width: '100%',
+      height: (props) => (props.isFullPalette ? '5%' : '10%'),
     },
   },
   copyText: {
