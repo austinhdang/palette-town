@@ -1,3 +1,5 @@
+import sizes from './mediaQueries';
+
 export default {
   Navbar: {
     display: 'flex',
@@ -6,6 +8,11 @@ export default {
     height: '6vh',
     fontFamily: 'Roboto',
     fontWeight: '500',
+    '& span': {
+      [sizes.down('xs')]: {
+        paddingLeft: '50px',
+      },
+    },
   },
   logo: {
     display: 'flex',
@@ -20,11 +27,19 @@ export default {
       textDecoration: 'none',
       color: 'black',
     },
+    [sizes.down('xs')]: {
+      width: '100%',
+      marginRight: 0,
+      justifyContent: 'center',
+    },
   },
   slider: {
     width: '340px',
     margin: '0 10px',
     display: 'inline-block',
+    [sizes.down('md')]: {
+      width: '150px',
+    },
   },
   selectContainer: {
     marginLeft: 'auto',

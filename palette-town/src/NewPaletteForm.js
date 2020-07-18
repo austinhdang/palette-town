@@ -22,7 +22,7 @@ const theme = createMuiTheme({
 function NewPaletteForm(props) {
   const classes = useStyles();
   const { palettes } = props;
-  const [ open, setOpen ] = React.useState(false);
+  const [ open, setOpen ] = React.useState(true);
   const [ colors, setColors ] = React.useState(palettes[0].colors);
 
   const handleDrawerOpen = () => {

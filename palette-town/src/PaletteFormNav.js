@@ -46,7 +46,12 @@ function PaletteFormNav(props) {
           >
             <EditIcon />
           </IconButton>
-          <Typography variant='h6' color='inherit' noWrap>
+          <Typography
+            variant='h6'
+            color='inherit'
+            noWrap
+            className={classes.title}
+          >
             Create New Palette
           </Typography>
         </Toolbar>
