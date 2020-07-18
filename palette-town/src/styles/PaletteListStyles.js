@@ -1,3 +1,5 @@
+import sizes from './mediaQueries';
+
 export default {
   root: {
     backgroundColor: 'blue',
@@ -13,6 +15,18 @@ export default {
     alignItems: 'flex-start',
     flexDirection: 'column',
     flexWrap: 'wrap',
+    [sizes.down('lg')]: {
+      width: '75%',
+    },
+    [sizes.down('md')]: {
+      width: '70%',
+    },
+    [sizes.down('sm')]: {
+      width: '85%',
+    },
+    [sizes.down('xs')]: {
+      width: '75%',
+    },
   },
   nav: {
     display: 'flex',
@@ -23,6 +37,9 @@ export default {
     justifyContent: 'space-between',
     alignItems: 'center',
     textTransform: 'uppercase',
+    [sizes.down('xs')]: {
+      fontSize: '0.9rem',
+    },
     '& a': {
       color: 'white',
       fontSize: '1.1rem',
@@ -41,5 +58,13 @@ export default {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 30%)',
     gridGap: '6.5% 5%',
+    [sizes.down('md')]: {
+      gridTemplateColumns: 'repeat(2, 47.5%)',
+      gridRowGap: '2.5%',
+    },
+    [sizes.down('xs')]: {
+      gridTemplateColumns: 'repeat(1, 100%)',
+      gridRowGap: '1.25%',
+    },
   },
 };
