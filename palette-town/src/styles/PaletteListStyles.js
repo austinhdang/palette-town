@@ -1,13 +1,19 @@
 import sizes from './mediaQueries';
+import { bgColor, bgFill, bgSize, bgRepeat, bgImg } from './background';
 
 export default {
   root: {
-    backgroundColor: 'blue',
+    backgroundColor: bgColor,
+    fill: bgFill,
+    backgroundSize: bgSize,
+    backgroundRepeat: bgRepeat,
+    backgroundImage: bgImg,
     height: '100vh',
     fontFamily: 'Barlow',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    overflow: 'scroll',
   },
   container: {
     width: '70%',
@@ -38,18 +44,25 @@ export default {
     alignItems: 'center',
     textTransform: 'uppercase',
     [sizes.down('xs')]: {
-      fontSize: '0.9rem',
+      fontSize: '1.25rem',
+      flexDirection: 'column',
+      paddingTop: '0.5rem',
     },
-    '& a': {
-      color: 'white',
-      fontSize: '1.1rem',
-      fontWeight: '600',
-      letterSpacing: '1px',
-      textDecoration: 'none',
-      textTransform: 'none',
-      '& .MuiSvgIcon-root': {
-        marginBottom: '-5px',
-      },
+  },
+  heading: {
+    [sizes.down('xs')]: {
+      margin: '0.75rem',
+    },
+  },
+  link: {
+    color: 'white',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    letterSpacing: '1px',
+    textDecoration: 'none',
+    textTransform: 'none',
+    '& .MuiSvgIcon-root': {
+      marginBottom: '-5px',
     },
   },
   palettes: {
