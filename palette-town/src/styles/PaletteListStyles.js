@@ -2,6 +2,15 @@ import sizes from './mediaQueries';
 import { bgColor, bgFill, bgSize, bgRepeat, bgImg } from './background';
 
 export default {
+  '@global': {
+    '.fade-exit': {
+      opacity: '1',
+    },
+    '.fade-exit-active': {
+      opacity: 0,
+      transition: 'opacity 0.5s ease-out',
+    },
+  },
   root: {
     backgroundColor: bgColor,
     fill: bgFill,
