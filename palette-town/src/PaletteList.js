@@ -54,7 +54,6 @@ function PaletteList(props) {
               <MiniPalette
                 {...palette}
                 handleClick={() => goToPalette(palette.id)}
-                // handleDelete={deletePalette}
                 openDialog={openDialog}
                 key={palette.id}
                 id={palette.id}
