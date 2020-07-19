@@ -89,4 +89,10 @@ export default {
       gridRowGap: '1.25%',
     },
   },
+  dialogText: {
+    color: 'black',
+  },
+  emphasis: {
+    color: '#EB030B',
+  },
 };
