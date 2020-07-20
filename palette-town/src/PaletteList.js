@@ -8,7 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import styles from './styles/PaletteListStyles';
 
@@ -19,6 +19,7 @@ function PaletteList(props) {
     id: '',
     name: '',
   });
+  const nodeRef = React.useRef(null);
 
   const goToPalette = (id) => {
     history.push(`/palette/${id}`);
@@ -50,7 +51,12 @@ function PaletteList(props) {
         </nav>
         <TransitionGroup className={classes.palettes}>
           {palettes.map((palette) => (
-            <CSSTransition key={palette.id} classNames='fade' timeout={500}>
+            <CSSTransition
+              key={palette.id}
+              classNames='fade'
+              nodeRef={nodeRef}
+              timeout={500}
+            >
               <MiniPalette
                 {...palette}
                 handleClick={() => goToPalette(palette.id)}

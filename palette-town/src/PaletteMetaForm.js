@@ -30,6 +30,7 @@ function PaletteMetaForm(props) {
   const savePalette = (emoji) => {
     const newPalette = { paletteName: newPaletteName, emoji: emoji.native };
     handleSubmit(newPalette);
+    setStage('');
   };
 
   return (
