@@ -1,5 +1,4 @@
 import React from 'react';
-import ColorPickerForm from './ColorPickerForm';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import ClearIcon from '@material-ui/icons/Clear';
+import ColorPickerForm from './ColorPickerForm';
 import useStyles from './styles/PaletteFormDrawerStyles';
 
 function PaletteFormDrawer(props) {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MiniPalette from './MiniPalette';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
+import MiniPalette from './MiniPalette';
 import styles from './styles/PaletteListStyles';
 
 function PaletteList(props) {

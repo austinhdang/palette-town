@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PaletteMetaForm from './PaletteMetaForm';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DoneIcon from '@material-ui/icons/Done';
+import PaletteMetaForm from './PaletteMetaForm';
 import useStyles from './styles/PaletteFormNavStyles';
 
 function PaletteFormNav(props) {

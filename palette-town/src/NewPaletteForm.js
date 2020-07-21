@@ -1,10 +1,10 @@
 import React from 'react';
-import DraggableColorList from './DraggableColorList';
-import PaletteFormNav from './PaletteFormNav';
-import PaletteFormDrawer from './PaletteFormDrawer';
 import clsx from 'clsx';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import arrayMove from 'array-move';
+import DraggableColorList from './DraggableColorList';
+import PaletteFormNav from './PaletteFormNav';
+import PaletteFormDrawer from './PaletteFormDrawer';
 import useStyles from './styles/NewPaletteFormStyles';
 
 const theme = createMuiTheme({
