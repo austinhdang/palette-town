@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
+import clsx from 'clsx';
 import styles from './styles/PaletteStyles';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -54,12 +55,16 @@ class SingleColorPalette extends Component {
         </div>
         <div
           style={{ background: '#1ba619' }}
-          className={`${classes.formatOverlay} ${isDiffFormat &&
-            classes.showOverlay}`}
+          className={clsx(
+            classes.formatOverlay,
+            isDiffFormat && classes.showOverlay
+          )}
         />
         <div
-          className={`${classes.formatMessage} ${isDiffFormat &&
-            classes.showMessage}`}
+          className={clsx(
+            classes.formatMessage,
+            isDiffFormat && classes.showMessage
+          )}
         >
           <h1>Changing color format!</h1>
         </div>

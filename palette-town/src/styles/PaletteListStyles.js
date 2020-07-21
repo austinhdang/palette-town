@@ -22,7 +22,7 @@ export default {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    overflow: 'scroll',
+    overflowY: 'scroll',
   },
   container: {
     width: '70%',
@@ -59,6 +59,7 @@ export default {
     },
   },
   heading: {
+    fontSize: '1.5rem',
     [sizes.down('xs')]: {
       margin: '0.75rem',
     },

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/PaletteStyles';
 
@@ -50,12 +51,16 @@ class Palette extends Component {
           {colorBoxes}
           <div
             style={{ background: '#1ba619' }}
-            className={`${classes.formatOverlay} ${isDiffFormat &&
-              classes.showOverlay}`}
+            className={clsx(
+              classes.formatOverlay,
+              isDiffFormat && classes.showOverlay
+            )}
           />
           <div
-            className={`${classes.formatMessage} ${isDiffFormat &&
-              classes.showMessage}`}
+            className={clsx(
+              classes.formatMessage,
+              isDiffFormat && classes.showMessage
+            )}
           >
             <h1>Changing color format!</h1>
           </div>
