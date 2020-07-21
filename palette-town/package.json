@@ -1,6 +1,7 @@
 {
   "name": "palette-town",
-  "version": "0.1.0",
+  "homepage": ".",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -33,11 +34,7 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [ ">0.2%", "not dead", "not op_mini all" ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
