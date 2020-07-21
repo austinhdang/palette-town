@@ -11,7 +11,6 @@ const styles = {
     cursor: 'pointer',
     marginBottom: '-3.5px',
     '& svg': {
-      color: 'rgba(0, 0, 0, 0.5)',
       fontSize: 'large',
       marginTop: '-3.5px',
       transition: 'all 0.3s ease-in-out',
@@ -44,7 +43,7 @@ const styles = {
     color: (props) =>
       chroma.contrast(props.color, 'white') < 4.5
         ? 'rgba(0, 0, 0, 0.8)'
-        : 'white',
+        : 'rgba(255, 255, 255, 0.8)',
     letterSpacing: '1px',
     textTransform: 'uppercase',
     fontSize: '12px',

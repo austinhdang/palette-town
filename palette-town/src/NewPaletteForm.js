@@ -6,6 +6,7 @@ import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import PaletteFormDrawer from './PaletteFormDrawer';
 import useStyles from './styles/NewPaletteFormStyles';
+import seedPalettes from './seedPalettes';
 
 const theme = createMuiTheme({
   overrides: {
@@ -23,7 +24,7 @@ function NewPaletteForm(props) {
   const classes = useStyles();
   const { palettes } = props;
   const [ open, setOpen ] = React.useState(true);
-  const [ colors, setColors ] = React.useState(palettes[0].colors);
+  const [ colors, setColors ] = React.useState(seedPalettes[0].colors);
 
   const handleDrawerOpen = () => {
     setOpen(true);
